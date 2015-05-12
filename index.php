@@ -5,10 +5,20 @@ ini_set('default_socket_timeout', 300);
 session_start(); /*start session*/
 
 //make constants using define
-define('clientId', '2ece9bd35d2e4598a98df7ef7a84bc30');
+define('clientID', '2ece9bd35d2e4598a98df7ef7a84bc30');
 define('client_Secret', 'b5d576a86043439ca6a79447ce8a1b64');
 define('redirectURI', 'http://localhost/DominicMorquechoAPI/index.php');
 define('ImageDirectory', 'pics/');
+
+if(isset($_GET['code'])){ /*setting up array to acess ['code']*/
+	$code = ($_GET['code']);
+	$url = 'https://api.instagram.com/oauth/access_token';
+	$access_token_settings = array('client_id' => clientID, 
+									'client_secret' => client_Secret,
+									'grant_type' => 'authorization_code',
+									'redirect_uri' => redirectURI,
+									'code' => $code);
+}
  ?>
 
  <!DOCTYPE html>
@@ -18,7 +28,7 @@ define('ImageDirectory', 'pics/');
  	<meta name="description" content="">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<title></title>
- 	<link rel="stylesheet" href="css/main.css">
+ 	<!-- <link rel="stylesheet" href="css/main.css"> -->
  </head>
  <body>
  <!-- login for people to aprove our app access to instagram
