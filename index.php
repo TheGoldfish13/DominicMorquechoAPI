@@ -18,7 +18,16 @@ if(isset($_GET['code'])){ /*setting up array to acess ['code']*/
 									'grant_type' => 'authorization_code',
 									'redirect_uri' => redirectURI,
 									'code' => $code);
+
+//cURL is what we use in php, its a library that calls to other API's
+$curl = curl_init($url); /*setting a cURL session and put in in $curl because thats were we are getting data from*/
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $access_token_settings); /*setting the postfields to the array setup that we made*/
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); /*setting it equal to 1 because we are getting strings back*/
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); /*but in lice work-production we want this to be true*/
 }
+$result = curl_exec($curl);
+curl_close(); /*close the session*/
  ?>
 
  <!DOCTYPE html>
