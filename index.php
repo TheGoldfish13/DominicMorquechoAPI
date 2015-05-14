@@ -14,16 +14,37 @@ define('ImageDirectory', 'pics/');
 function connectToInstagram($url){
 	$ch = curl_init();
 
-	curl_setopt_array($ch, array[
+	curl_setopt_array($ch, array(
 			CURLOPT_URL =>$url,
 			CURLOPT_RETURNTRANSFER =>true,
 			CURLOPT_SSL_VERIFYPEER =>false,
 			CURLOPT_SSL_VERIFYHOST =>2,
-		]);
+		));
 	$result = curl_exec($ch);
 	curl_close($ch);
 	return $result;
 }
+/*function to get UserID because we need it to get pictures*/
+function getUserID($userName){
+	$url = 'http://api.instagram.com/v1/users/search?q=' . $userName . '&client_id=' . clientID; /*is this supposed to be captial N?*/
+	$instagramInfo = connectToInstagram($url);
+	$results = json_decode($instagramInfo, true);
+
+
+	echo $results['data']['0']['id'];
+}
+//function to print out images to our screen 
+function printImages($userID){
+	$url = 'http://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id=' . clientID . '&count=5'; /*request last 5 picsfrom ig*/
+	$instagramInfo = connectToInstagram($url);
+	$results = json_decode($instagramInfo, true);
+	//parse through the info one at a time
+	foreach ($results['data'] as $items) {
+		$image_url = $items['images']['low_resolution']['url']; /*go through results and bring back url of pics to save in PHP server*/
+		echo '<img src=" '.$image_url.'"/><br/>';
+	}
+}
+
 
 
 
@@ -49,7 +70,12 @@ $result = curl_exec($curl);
 curl_close($curl); /*close the session*/
 
 $results = json_decode($result, true);
-echo $results['user']['username'];
+
+$userName = $results['user']['username'];
+
+$userID = getUserID($userName);
+
+printImages($userID);
 }
 
 else{
