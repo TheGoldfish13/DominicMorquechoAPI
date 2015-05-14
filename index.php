@@ -42,9 +42,19 @@ function printImages($userID){
 	foreach ($results['data'] as $items) {
 		$image_url = $items['images']['low_resolution']['url']; /*go through results and bring back url of pics to save in PHP server*/
 		echo '<img src=" '.$image_url.'"/><br/>';
+		//callin a function tp save $image_url
+		savePictures($image_url);
 	}
 }
+//creating a function to save image to server
+function savePictures($image_url){
+	echo $image_url . '<br>';
+	$filename = basename($image_url);  /*the filename is what we storing basename is PHP built in method that we using to store $image_url*/
+	echo $filename . '<br>';
 
+	$destination = ImageDirectory . $filename; /*making sure image doesnt exist in the storage*/
+	file_put_contents($destination, file_get_contents($image_url)); /*grabs imagefile and storesit in server*/
+}
 
 
 
