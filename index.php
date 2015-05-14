@@ -26,16 +26,16 @@ function connectToInstagram($url){
 }
 /*function to get UserID because we need it to get pictures*/
 function getUserID($userName){
-	$url = 'http://api.instagram.com/v1/users/search?q=' . $userName . '&client_id=' . clientID; /*is this supposed to be captial N?*/
+	$url = 'https://api.instagram.com/v1/users/search?q=' . $userName . '&client_id=' . clientID; /*is this supposed to be captial N?*/
 	$instagramInfo = connectToInstagram($url);
 	$results = json_decode($instagramInfo, true);
 
 
-	echo $results['data']['0']['id'];
+	return $results['data']['0']['id'];
 }
 //function to print out images to our screen 
 function printImages($userID){
-	$url = 'http://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id=' . clientID . '&count=5'; /*request last 5 picsfrom ig*/
+	$url = 'https://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id=' . clientID . '&count=5'; /*request last 5 picsfrom ig*/
 	$instagramInfo = connectToInstagram($url);
 	$results = json_decode($instagramInfo, true);
 	//parse through the info one at a time
