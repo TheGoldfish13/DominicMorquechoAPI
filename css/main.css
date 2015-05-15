@@ -1,0 +1,50 @@
+.test{
+	margin-left: 38%;
+	margin-bottom: 2%;
+}
+body{
+	background-image: url("http://image.blingee.com/images18/content/output/000/000/000/77e/758560984_2005651.gif");
+	background-repeat: no-repeat;
+	background-size:cover;
+	height: 100%;
+	width: 100%;
+}
+#rogertrust{
+	font-family: 'Pacifico', cursive;
+	font-size: 49px;
+	text-align: center;
+	margin-top: 1%;
+	display: inline;
+	margin-left: 2%;
+}
+#rogerpoem{
+	display: inline-block;
+	width: 100%;
+	font-family: 'Redressed', cursive;
+	font-size: 23px;
+	text-align: center;
+	letter-spacing: 1px;
+	color: #FA6EB4;
+}
+#bunny{
+	height: 150px;
+	width: 150px;
+	display: inline;
+	margin-left: 20%;
+}
+#rightbunny{
+	height: 150px;
+	width: 150px;
+	display: inline;
+	margin-left: 2%;
+}
+
+@media screen and (max-width:375px) {
+	#bunny{
+	height: 100px;
+	width: 100px;
+	display: inline;
+	margin-left: 5%;
+}
+}
+
