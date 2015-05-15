@@ -35,7 +35,7 @@ function getUserID($userName){
 }
 //function to print out images to our screen 
 function printImages($userID){
-	$url = 'https://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id=' . clientID . '&count=5'; /*request last 5 picsfrom ig*/
+	$url = 'https://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id=' . clientID . '&count=3'; /*request last 5 picsfrom ig*/
 	$instagramInfo = connectToInstagram($url);
 	$results = json_decode($instagramInfo, true);
 	//parse through the info one at a time
@@ -58,10 +58,10 @@ function savePictures($image_url){
 
 
 
-if(isset($_GET['code'])){ /*setting up array to acess ['code']*/  
-	$code = ($_GET['code']);
+if(isset($_GET['code'])){ /*if you have logged in*/  
+	$code = ($_GET['code']); /*set these variables*/
 	$url = 'https://api.instagram.com/oauth/access_token';
-	$access_token_settings = array('client_id' => clientID, 
+	$access_token_settings = array('client_id' => clientID, /*and this array for connecting to instagram*/
 									'client_secret' => clientSecret,
 									'grant_type' => 'authorization_code',
 									'redirect_uri' => redirectURI,
@@ -79,30 +79,13 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); /*but in live work-production
  <html>
  <head>
  	<title> Roger senpai!!!!</title>
- 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
  	<link rel="stylesheet" type="text/css" href="css/main.css"/>
  	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
  	<link href='http://fonts.googleapis.com/css?family=Redressed' rel='stylesheet' type='text/css'>
  	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<style> body, a, a:hover { cursor:url('http://www.dolliehost.com/dolliecrave/cursors/cursors-cute/cute63.gif'), auto }</style>
- 	<style>
-	::-webkit-scrollbar {
-	width: 20px;
-	height: 7px;
-	background-color:#ffffff;
-	}
-	::-webkit-scrollbar-button:start:decrement,
-	::-webkit-scrollbar-button:end:increment {display: block;}
-	::-webkit-scrollbar-button:vertical:start:increment,
-	::-webkit-scrollbar-button:vertical:end:decrement {display: none;}
-	::-webkit-scrollbar-button:end:increment 
-        {background-image:url(http://www.dolliehost.com/dolliecrave/scrollbars/arrowdown.png);
-	background-repeat: no-repeat;background-position:center;
-        -webkit-box-shadow: inset 0 0 16px rgba(214,214,214,0.9);}
-</style>
 <div id="scrollbardolliecrave">
-<a href="http://www.dolliecrave.com/pretty-scrollbars.php" target="_blank" title="Tumblr Scrollbars"><img src="http://static.tumblr.com/wgdkvue/CAMmhnuc3/scrollbars.png" border=0 alt="Tumblr Scrollbars"></a></div>
-<style>
+</div>
+<style> /*this is really ugly code for the scrollbar that im too afraid to put in css*/
 	::-webkit-scrollbar-button:start:decrement 
 	{background-image: url(http://www.dolliehost.com/dolliecrave/scrollbars/arrowup.png);
 	background-repeat: no-repeat;background-position:center;
@@ -133,17 +116,13 @@ curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); /*but in live work-production
 
  </head>
  <body>
+ <div id="bunnybox"> <!-- bunny gifs -->
  	<img src="http://media.giphy.com/media/h7KMmkYUcbPQQ/giphy.gif" id="bunny">
  	<div id="rogertrust">
  		In Roger Kim We Trust
  	</div>
 	<img src="http://media.giphy.com/media/h7KMmkYUcbPQQ/giphy.gif" id="rightbunny">
-
- <!-- login for people to aprove our app access to instagram
- after getting aproval we have info to play with -->
- 
- </body>
- </html>
+</div>	
  <?php
 
 $result = curl_exec($curl);
@@ -155,10 +134,8 @@ $userName = $results['user']['username'];
 
 $userID = getUserID($userName);
 
-printImages($userID);
+printImages($userID); /*this is where the imagesare printed to out website*/
 ?>
-	<html>
-	<body>
 		<div id="rogerpoem">
 			What is Reality? <br>
 			Roger Kim is reality <br>
@@ -178,7 +155,7 @@ printImages($userID);
 <?php 
 }
 
-else{
+else{ /*if not logged in then show this*/
 
  ?>
 
@@ -186,15 +163,19 @@ else{
  <html>
  <head>
  	<title> Roger senpai!</title>
+ 	<link rel="stylesheet" type="text/css" href="css/login.css"/>
  	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
- 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
  </head>
  <body>
  <!-- login for people to aprove our app access to instagram
  after getting aproval we have info to play with -->
- 	<a href="https:api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">Login</a>
- 
+ 	<div class="col-xs-2"></div>
+ 	<div class="col-xs-8" id="test">
+ 		<div id="lonk">
+ 			<a href="https:api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code" class="no-line">Login</a>
+ 		</div>
+ 	</div>
  </body>
  </html>
 

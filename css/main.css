@@ -5,17 +5,21 @@
 body{
 	background-image: url("http://image.blingee.com/images18/content/output/000/000/000/77e/758560984_2005651.gif");
 	background-repeat: no-repeat;
-	background-size:cover;
-	height: 100%;
-	width: 100%;
+	background-size: 100% 100%;
 }
+body, a, a:hover {
+ cursor:url('http://www.dolliehost.com/dolliecrave/cursors/cursors-cute/cute63.gif'), auto
+  }
 #rogertrust{
 	font-family: 'Pacifico', cursive;
 	font-size: 49px;
 	text-align: center;
-	margin-top: 1%;
 	display: inline;
 	margin-left: 2%;
+	margin-bottom: 3%;
+}
+#bunnybox{
+	margin-bottom: 2%;
 }
 #rogerpoem{
 	display: inline-block;
@@ -27,30 +31,45 @@ body{
 	color: #FA6EB4;
 }
 #bunny{
-	height: 150px;
-	width: 150px;
+	height: 100px;
+	width: 100px;
 	display: inline;
 	margin-left: 20%;
 }
 #rightbunny{
-	height: 150px;
-	width: 150px;
+	height: 100px;
+	width: 100px;
 	display: inline;
 	margin-left: 2%;
 }
+	::-webkit-scrollbar {
+	width: 20px;
+	height: 7px;
+	background-color:#ffffff;
+	}
+	::-webkit-scrollbar-button:start:decrement,
+	::-webkit-scrollbar-button:end:increment {display: block;}
+	::-webkit-scrollbar-button:vertical:start:increment,
+	::-webkit-scrollbar-button:vertical:end:decrement {display: none;}
+	::-webkit-scrollbar-button:end:increment 
+        {background-image:url(http://www.dolliehost.com/dolliecrave/scrollbars/arrowdown.png);
+	background-repeat: no-repeat;background-position:center;
+        -webkit-box-shadow: inset 0 0 16px rgba(214,214,214,0.9);}
 
 @media screen and (max-width:375px) {
+	body::-webkit-scrollbar { 
+    display: none; 
+}
 	#bunny{
 	height: 45px;
 	width: 45px;
 	display: inline;
-	margin-left: 2%;
+	margin-left: 1%;
 	}
 	#rogertrust{
 	font-family: 'Pacifico', cursive;
-	font-size: 23px;
+	font-size: 22px;
 	text-align: center;
-	margin-top: 1%;
 	display: inline;
 	}
 	#rightbunny{
@@ -63,10 +82,13 @@ body{
 	display: inline-block;
 	width: 100%;
 	font-family: 'Redressed', cursive;
-	font-size: 19px;
+	font-size: 18px;
 	text-align: center;
 	color: #FA6EB4;
-}
-
+	}
+	.test{
+	margin-bottom: 4%;
+	margin-left: 5%;
+	}
 }
 

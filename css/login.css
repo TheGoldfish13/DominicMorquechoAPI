@@ -1,0 +1,29 @@
+body{
+	background-image: url(http://i113.photobucket.com/albums/n204/sillykid84/misc/peach-background.jpg);
+	background-repeat: repeat-y;
+	 background-size: 100%;
+	 text-align: center;
+}
+a{
+	font-size: 40px;
+	text-decoration: none;
+	color: #7DBDF5;
+}
+a:hover{
+	font-size: 41px; 
+	text-decoration: none;
+	color: #7DBDF5;
+
+}
+#test{
+	background-color: white;
+	height: 705px;
+	background-color:rgba(255,255,255,0.8);
+}
+#lonk{
+	margin-top: 4%;
+}
+.no-line{
+	text-decoration: none;
+	color: #7DBDF5;
+}
