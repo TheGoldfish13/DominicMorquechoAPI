@@ -35,7 +35,7 @@ function getUserID($userName){
 }
 //function to print out images to our screen 
 function printImages($userID){
-	$url = 'https://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id=' . clientID . '&count=2'; /*request last 5 picsfrom ig*/
+	$url = 'https://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id=' . clientID . '&count=5'; /*request last 5 picsfrom ig*/
 	$instagramInfo = connectToInstagram($url);
 	$results = json_decode($instagramInfo, true);
 	//parse through the info one at a time
